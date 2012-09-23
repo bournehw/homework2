@@ -11,5 +11,6 @@ class ListNode{
 		Shape* shape_;
 
 		void addAfter(ListNode* node2Add);
+		ListNode* removeNode();
 };
 #endif

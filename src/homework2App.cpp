@@ -14,25 +14,30 @@ void homework2App::prepareSettings(Settings* settings){
 	(*settings).setResizable(false);
 }
 
-void homework2App::mouseDown(MouseEvent event)
-{
+void homework2App::mouseDown(MouseEvent event){
+	bool isOnShape = false;
+
 	if(event.isLeftDown()){
 		ListNode* currentNode = headNode_;
 		do{
 			if(currentNode->shape_->isInside(event.getX(),event.getY())){
 				selectedNode_ = currentNode;
-				break;
-			}else
-				selectedNode_ = 0;
+				selectedNode_ = selectedNode_->removeNode();
+				headNode_->previous_->addAfter(selectedNode_);
+				isOnShape = true;
+			}
 			currentNode = currentNode->next_;
 		}while(currentNode!=headNode_);
+
+		if(!isOnShape)
+			selectedNode_ = NULL;
 	}
 }
 
 void homework2App::mouseDrag(MouseEvent event){
 	int mouseX = event.getX();
 	int mouseY = event.getY();
-	if(event.isLeftDown()&&selectedNode_!=0){
+	if(event.isLeftDown()&&selectedNode_!=NULL){
 		selectedNode_->shape_->x_ = mouseX;
 		selectedNode_->shape_->y_ = mouseY;
 	}
@@ -64,19 +69,13 @@ void homework2App::update(){
 	ListNode* currentNode = headNode_;
 
 	do{
-		
-		if(currentNode==selectedNode_){
-			currentNode->shape_->draw(pixles, Color8u(255,255,255));
-		}else
-			currentNode->shape_->draw(pixles);
-
+		currentNode->shape_->draw(pixles);
 		currentNode = currentNode->next_;
 	}while(currentNode!=headNode_);
 }
 
 void homework2App::draw()
 {
-	gl::clear(Color(1.0f,1.0f,1.0f));
 	gl::draw(*surface_);	
 }
 
