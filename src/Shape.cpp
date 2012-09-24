@@ -14,8 +14,6 @@ Shape::Shape(Shape* s){
 	y_ = s->y_;
 }
 
-
-
 void Shape::draw(uint8_t* pixels){
 }
 
@@ -24,4 +22,9 @@ void Shape::draw(uint8_t* pixels, Color8u borderColor){
 
 bool Shape::isInside(int x, int y){
 	return false;
+}
+
+void Shape::move(int x,int y){
+	x_ = x;
+	y_ = y;
 }

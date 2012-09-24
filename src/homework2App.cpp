@@ -25,8 +25,9 @@ void homework2App::mouseDown(MouseEvent event){
 				selectedNode_ = selectedNode_->removeNode();
 				headNode_->previous_->addAfter(selectedNode_);
 				isOnShape = true;
+				break;
 			}
-			currentNode = currentNode->next_;
+			currentNode = currentNode->previous_;
 		}while(currentNode!=headNode_);
 
 		if(!isOnShape)
@@ -34,15 +35,51 @@ void homework2App::mouseDown(MouseEvent event){
 	}
 }
 
+void homework2App::mouseUp(MouseEvent event){
+	if(event.isShiftDown()&&event.isLeft()&&selectedNode_!=NULL){
+		ListNode* currentNode = headNode_;
+
+		do{
+			if(currentNode->shape_->
+				isInside(selectedNode_->shape_->x_,
+				selectedNode_->shape_->y_))
+			{
+				selectedNode_ = selectedNode_->removeNode();
+				currentNode->addChild(selectedNode_);
+				selectedNode_ = NULL;
+				break;
+			}
+			currentNode = currentNode->next_;
+		}while(currentNode!=headNode_);
+	}
+}
+
 void homework2App::mouseDrag(MouseEvent event){
 	int mouseX = event.getX();
 	int mouseY = event.getY();
 	if(event.isLeftDown()&&selectedNode_!=NULL){
-		selectedNode_->shape_->x_ = mouseX;
-		selectedNode_->shape_->y_ = mouseY;
+		if(selectedNode_->childrenHead_!=NULL){
+			ListNode* currentChild = selectedNode_->childrenHead_;
+			int diffX = mouseX-selectedNode_->shape_->x_;
+			int diffY = mouseY-selectedNode_->shape_->y_;
+			int childX, childY;
+			do{
+				childX = currentChild->shape_->x_;
+				childY = currentChild->shape_->y_;
+				currentChild->shape_->move(childX+diffX,childY+diffY);
+				currentChild = currentChild->next_;
+			}while(currentChild!=selectedNode_->childrenHead_);
+		}
+		selectedNode_->shape_->move(mouseX,mouseY);
 	}
 }
 
+void homework2App::keyDown(KeyEvent event){
+	if(event.getChar()=='r'){
+		headNode_->reverseNodeOrder(headNode_);
+	}
+}
+	
 void homework2App::generateShapes(){
 	ListNode* currentNode;
 	Color8u color;
@@ -69,6 +106,14 @@ void homework2App::update(){
 	ListNode* currentNode = headNode_;
 
 	do{
+		if(currentNode->childrenHead_!=NULL){
+			ListNode* currentChild = currentNode->childrenHead_;
+			do{
+				currentChild->shape_->draw(pixles);
+				currentChild = currentChild->next_;
+			}while(currentChild!=currentNode->childrenHead_);
+		}
+
 		currentNode->shape_->draw(pixles);
 		currentNode = currentNode->next_;
 	}while(currentNode!=headNode_);

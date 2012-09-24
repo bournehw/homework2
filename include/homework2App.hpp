@@ -24,12 +24,15 @@ using namespace std;
 class homework2App : public AppBasic {
 public:
 	void setup();
-	void mouseDown(MouseEvent event);	
+	void mouseDown(MouseEvent event);
+	void mouseUp(MouseEvent event);
 	void mouseDrag(MouseEvent event);
+	void keyDown(KeyEvent event);
 	void update();
 	void draw();
 	void prepareSettings(Settings* settings);
 	void generateShapes();
+	
 
 private:
 	Surface* surface_;

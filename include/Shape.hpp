@@ -12,6 +12,7 @@ class Shape{
 		virtual void draw(uint8_t* pixels);
 		virtual void draw(uint8_t* pixels, Color8u borderColor);
 		virtual bool isInside(int x, int y);
+		void move(int x, int y);
 
 		Color8u color_;
 		int size_, x_, y_;
