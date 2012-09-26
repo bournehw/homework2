@@ -1,5 +1,8 @@
 #include "ListNode.hpp"
 
+/**
+*ListNode constructor
+*/
 ListNode::ListNode(Shape* shape){
 	shape_ = shape;
 	next_ = this;
@@ -7,6 +10,10 @@ ListNode::ListNode(Shape* shape){
 	childrenHead_ = NULL;
 }
 
+/**
+*Adds a node to the linked list after the node that 
+*calls the function.
+*/
 void ListNode::addAfter(ListNode* node2Add){
 	node2Add->next_ = next_;
 	node2Add->previous_ = this;
@@ -14,6 +21,9 @@ void ListNode::addAfter(ListNode* node2Add){
 	next_ = node2Add;
 }
 
+/**
+*Removes the calling node and returns a pointer to it
+*/
 ListNode* ListNode::removeNode(){
 	next_->previous_ = previous_;
 	previous_->next_ = next_;
@@ -22,6 +32,9 @@ ListNode* ListNode::removeNode(){
 	return this;
 }
 
+/**
+*reverses the order of all the nodes in the liked list
+*/
 void ListNode::reverseNodeOrder(ListNode* headNode){
 	ListNode* currentNode = headNode;
 	ListNode* temp;
@@ -33,6 +46,9 @@ void ListNode::reverseNodeOrder(ListNode* headNode){
 	}while(currentNode!=headNode);
 }
 
+/**
+*Adds a node to the children linked list of the caling node
+*/
 void ListNode::addChild(ListNode* child){
 	if(childrenHead_==NULL){
 		childrenHead_ = child;
