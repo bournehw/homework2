@@ -14,6 +14,13 @@ void homework2App::prepareSettings(Settings* settings){
 	(*settings).setResizable(false);
 }
 
+/**
+*This function contians the code which allows items to be
+*reordered. Clicking (left click) on an item brings it to
+*the front of the linked-list.
+*
+*This satisfies the "item re-ordering" requirment, goal C
+*/
 void homework2App::mouseDown(MouseEvent event){
 	bool isOnShape = false;
 
@@ -35,6 +42,20 @@ void homework2App::mouseDown(MouseEvent event){
 	}
 }
 
+/**
+*This function contains the code which allows items to be 
+*grouped (contain each other) and considered one item. 
+*Releasing an item you are dragging over another item (while
+*holding shift) makes the first item the second items child.
+*This means that the first item can nolonger be iteracted with
+*and that moving or reordering the second item will cause the
+*same to happen to the first item. Any number of items can be 
+*made children of an item but if you make an item with a child 
+*a child that items child will disapear.
+*
+*This satisfies the "move range of items" requirement, goal F
+*and the "ojects can contain objects" requirement, goal I
+*/
 void homework2App::mouseUp(MouseEvent event){
 	if(event.isShiftDown()&&event.isLeft()&&selectedNode_!=NULL){
 		ListNode* currentNode = headNode_;
@@ -54,6 +75,13 @@ void homework2App::mouseUp(MouseEvent event){
 	}
 }
 
+/**
+*This function contains the code which allows items to be 
+*dragged arround the screen by clicking and dragging the item 
+*with the left mouse button.
+*
+*This satisfies the "move items" requirement, goal D
+*/
 void homework2App::mouseDrag(MouseEvent event){
 	int mouseX = event.getX();
 	int mouseY = event.getY();
@@ -74,6 +102,12 @@ void homework2App::mouseDrag(MouseEvent event){
 	}
 }
 
+/** This function contains the doe which reverses the order of the 
+*entire linked-list when the user presses the R key (without 
+*Caps Lock or Shift keys pressed).
+*
+*This satisfies the "reverse the order" requirement, goal E
+*/
 void homework2App::keyDown(KeyEvent event){
 	if(event.getChar()=='r'){
 		headNode_->reverseNodeOrder(headNode_);

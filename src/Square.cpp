@@ -1,13 +1,21 @@
 #include "Square.hpp"
 
+/**
+*Constructor for Square class.
+*/
 Square::Square(int cornerX, int cornerY, int size, Color8u color)
 :Shape(cornerX,cornerY,size,color){
-
 }
 
+/**
+*Copy Constructor for Square class
+*/
 Square::Square(Square* s):Shape(s){
 }
 
+/**
+*Draws the square which calls it on the surface in pixels
+*/
 void Square::draw(uint8_t* pixels){	
 	if(size_<=0) return;
 
@@ -21,6 +29,10 @@ void Square::draw(uint8_t* pixels){
 	}
 }
 
+/**
+*Draws the square which calls it on the surface in pixels with
+*a border of the given color
+*/
 void Square::draw(uint8_t* pixels, Color8u borderColor){
 	if(size_<=0) return;
 
@@ -42,6 +54,10 @@ void Square::draw(uint8_t* pixels, Color8u borderColor){
 	}
 }
 
+/**
+*Returns true if the given coordinates are inside the square
+*which calls it
+*/
 bool Square::isInside(int x, int y){
 	return (y>y_ && y<y_+size_ && x>x_ && x<x_+size_);
 }
