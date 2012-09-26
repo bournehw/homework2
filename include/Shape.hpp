@@ -39,7 +39,5 @@ class Shape{
 
 		Color8u color_;
 		int size_, x_, y_;
-
-	private:
 };
 #endif

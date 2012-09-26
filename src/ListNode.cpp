@@ -34,7 +34,7 @@ void ListNode::reverseNodeOrder(ListNode* headNode){
 }
 
 void ListNode::addChild(ListNode* child){
-	if(childrenHead_==NULL){
+	if(childrenHead_== NULL){
 		childrenHead_ = child;
 		childrenHead_->next_ = childrenHead_;
 		childrenHead_->previous_ = childrenHead_;

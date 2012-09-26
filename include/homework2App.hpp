@@ -25,7 +25,7 @@
 /**
  *Linked-list class
  *
- *This satisfies the "linke-list" requirement, goal A
+ *This satisfies the "linked-list" requirement, goal A
  */
 #include "ListNode.hpp"
 #include "Shape.hpp"
@@ -45,26 +45,26 @@ class homework2App : public AppBasic {
 public:
 	void setup();
 	/**
-	 *This function contians the code which allows items to be
+	 *This function contains the code which allows items to be
 	 *reordered. Clicking (left click) on an item brings it to
 	 *the front of the linked-list.
 	 *
-	 *This satisfies the "item re-ordering" requirment, goal C
+	 *This satisfies the "item re-ordering" requirement, goal C
 	 */
 	void mouseDown(MouseEvent event);
 	/**
 	 *This function contains the code which allows items to be 
 	 *grouped (contain each other) and considered one item. 
 	 *Releasing an item you are dragging over another item (while
-	 *holding shift) makes the first item the second items child.
-	 *This means that the first item can nolonger be iteracted with
+	 *holding shift) makes the first item the second item's child.
+	 *This means that the first item can no longer be interacted with
 	 *and that moving or reordering the second item will cause the
 	 *same to happen to the first item. Any number of items can be 
-	 *made children of an item but if you make an item with a child 
-	 *a child that items child will disapear.
+	 *made children of an item, but if you make an item with a child 
+	 *a child that items child will disappear.
 	 *
 	 *This satisfies the "move range of items" requirement, goal F
-	 *and the "ojects can contain objects" requirement, goal I
+	 *and the "objects can contain objects" requirement, goal I
 	 */
 	void mouseUp(MouseEvent event);
 	/**
@@ -76,7 +76,7 @@ public:
 	 */
 	void mouseDrag(MouseEvent event);
 	/**
-	 *This function contains the doe which reverses the order of the 
+	 *This function contains the code which reverses the order of the 
 	 *entire linked-list when the user presses the R key (without 
 	 *Caps Lock or Shift keys pressed).
 	 *

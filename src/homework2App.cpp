@@ -100,8 +100,9 @@ void homework2App::generateShapes(){
 }
 
 void homework2App::update(){
-	uint8_t* pixles = surface_->getData();
-	memcpy(pixles,clearSurface_,3*TEXTURE_SIZE*TEXTURE_SIZE);
+
+	uint8_t* pixels = surface_->getData();
+	memcpy(pixels,clearSurface_,3*TEXTURE_SIZE*TEXTURE_SIZE);
 
 	ListNode* currentNode = headNode_;
 
@@ -109,12 +110,12 @@ void homework2App::update(){
 		if(currentNode->childrenHead_!=NULL){
 			ListNode* currentChild = currentNode->childrenHead_;
 			do{
-				currentChild->shape_->draw(pixles);
+				currentChild->shape_->draw(pixels);
 				currentChild = currentChild->next_;
 			}while(currentChild!=currentNode->childrenHead_);
 		}
 
-		currentNode->shape_->draw(pixles);
+		currentNode->shape_->draw(pixels);
 		currentNode = currentNode->next_;
 	}while(currentNode!=headNode_);
 }
