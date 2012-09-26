@@ -5,8 +5,8 @@
 class ListNode{
 public:
 	/**
-		*ListNode constructor
-		*/
+	 *ListNode constructor
+	 */
 	ListNode(Shape* shape);
 
 	ListNode* next_;
@@ -23,11 +23,11 @@ public:
 	 */
 	ListNode* removeNode();
 	/**
-	 *reverses the order of all the nodes in the liked list
+	 *Reverses the order of all the nodes in the linked list
 	 */
 	void reverseNodeOrder(ListNode* headNode);
 	/**
-	 *Adds a node to the children linked list of the caling node
+	 *Adds a node to the children linked list of the calling node
 	 */
 	void addChild(ListNode* child);
 };
